@@ -2,7 +2,7 @@ package pl.training.shop.payments;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.training.shop.payments.adapters.logging.PaymentsFileLogger;
+import pl.training.shop.payments.adapters.logging.FilePaymentsLogger;
 import pl.training.shop.payments.application.GetPaymentService;
 import pl.training.shop.payments.application.PaymentIdGenerator;
 import pl.training.shop.payments.application.ProcessPaymentService;
@@ -19,8 +19,8 @@ import java.nio.file.Paths;
 public class PaymentsConfiguration {
 
     @Bean
-    public PaymentsFileLogger paymentFileLogger() {
-        return new PaymentsFileLogger(Paths.get("logs.txt"));
+    public FilePaymentsLogger paymentFileLogger() {
+        return new FilePaymentsLogger(Paths.get("logs.txt"));
     }
 
     @Bean

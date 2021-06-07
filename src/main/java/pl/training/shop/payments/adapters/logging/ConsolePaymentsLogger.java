@@ -13,28 +13,28 @@ import pl.training.shop.payments.domain.Payment;
 @Aspect
 @Component
 @Log
-public class PaymentsConsoleLogger {
+public class ConsolePaymentsLogger {
 
     @Pointcut("@annotation(pl.training.shop.payments.ports.usecases.PaymentProcess)")
-    public void logPayments() {
+    public void processPaymentRequest() {
     }
 
-    @Before("logPayments() && args(paymentRequest)")
+    @Before("processPaymentRequest() && args(paymentRequest)")
     public void beforePayment(JoinPoint joinPoint, PaymentRequest paymentRequest) {
         log.info("New payment request: " + paymentRequest);
     }
 
-    @After("logPayments()")
+    @After("processPaymentRequest()")
     public void afterPayment() {
         log.info("After payment");
     }
 
-    @AfterReturning(value = "logPayments()", returning = "payment")
+    @AfterReturning(value = "processPaymentRequest()", returning = "payment")
     public void log(Payment payment) {
         log.info("Payment created: " + payment);
     }
 
-    @AfterThrowing(value = "logPayments()", throwing = "exception")
+    @AfterThrowing(value = "processPaymentRequest()", throwing = "exception")
     public void log(RuntimeException exception) {
         log.info("Payment exception: " + exception);
     }

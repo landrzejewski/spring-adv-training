@@ -13,7 +13,7 @@ import java.nio.file.StandardOpenOption;
 
 @Aspect
 @RequiredArgsConstructor
-public class PaymentsFileLogger implements Ordered {
+public class FilePaymentsLogger implements Ordered {
 
     private final Path path;
 
