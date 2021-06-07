@@ -1,10 +1,12 @@
 package pl.training.shop.commons.validator;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.validation.*;
 import java.lang.reflect.InvocationTargetException;
 
+@Component
 @RequiredArgsConstructor
 public class ValidatorService {
 

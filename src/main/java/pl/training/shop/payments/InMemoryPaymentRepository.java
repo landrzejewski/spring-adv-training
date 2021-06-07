@@ -1,6 +1,7 @@
 package pl.training.shop.payments;
 
 import org.springframework.stereotype.Repository;
+import pl.training.shop.commons.validator.Validate;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -11,7 +12,7 @@ public class InMemoryPaymentRepository implements PaymentRepository {
 
     private final Set<Payment> payments = new HashSet<>();
 
-    public Payment save(Payment payment) {
+    public Payment save(@Validate Payment payment) {
         payments.add(payment);
         return payment;
     }

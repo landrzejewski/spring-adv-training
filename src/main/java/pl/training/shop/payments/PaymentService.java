@@ -13,7 +13,7 @@ public class PaymentService implements Payments {
     private final PaymentRepository paymentRepository;
     private final TimeProvider timeProvider;
 
-    @Retry
+    //@Retry
     //@LogExecutionTime
     //@LogPayments
     @Override
@@ -24,7 +24,8 @@ public class PaymentService implements Payments {
 
     private Payment createPayment(PaymentRequest paymentRequest) {
         return Payment.builder()
-                .id(paymentIdGenerator.getNext())
+                .id("01")
+                //.id(paymentIdGenerator.getNext())
                 .value(paymentRequest.getValue())
                 .properties(paymentRequest.getProperties())
                 .timestamp(timeProvider.getTimestamp())

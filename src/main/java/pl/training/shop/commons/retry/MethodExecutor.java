@@ -21,7 +21,7 @@ public class MethodExecutor {
         Throwable throwable;
         do {
             currentAttempt++;
-            log.info(String.format("%s execution attempt %d", proceedingJoinPoint.getSignature().getName(), currentAttempt));
+            log.info(String.format("%s execution attempt %d", proceedingJoinPoint.getSignature(), currentAttempt));
             try {
                 return proceedingJoinPoint.proceed();
             } catch (Throwable t) {

@@ -5,6 +5,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import static java.util.stream.IntStream.range;
 
 @Aspect
+@Component
 @RequiredArgsConstructor
 public class ModelValidator {
 
