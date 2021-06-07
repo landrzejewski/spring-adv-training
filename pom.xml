@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.training</groupId>
-    <artifactId>java-testing</artifactId>
+    <artifactId>shop</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
