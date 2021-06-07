@@ -1,4 +1,4 @@
-package pl.training.shop.commons.timer;
+package pl.training.shop.commons.aop.timer;
 
 import lombok.extern.java.Log;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -1,4 +1,4 @@
-package pl.training.shop.commons.validator;
+package pl.training.shop.commons.aop.validator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

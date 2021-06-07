@@ -1,4 +1,4 @@
-package pl.training.shop.commons.retry;
+package pl.training.shop.commons.aop.retry;
 
 import lombok.extern.java.Log;
 import org.aspectj.lang.ProceedingJoinPoint;

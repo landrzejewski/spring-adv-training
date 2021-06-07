@@ -1,7 +1,7 @@
 package pl.training.shop.payments.adapters.persitence;
 
 import org.springframework.stereotype.Repository;
-import pl.training.shop.commons.validator.Validate;
+import pl.training.shop.commons.aop.validator.Validate;
 import pl.training.shop.payments.domain.Payment;
 import pl.training.shop.payments.ports.persistence.PaymentsQueries;
 import pl.training.shop.payments.ports.persistence.PaymentsUpdates;

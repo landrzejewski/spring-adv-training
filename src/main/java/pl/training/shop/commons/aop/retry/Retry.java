@@ -1,14 +1,14 @@
-package pl.training.shop.commons.validator;
+package pl.training.shop.commons.aop.retry;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.PARAMETER)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Validate {
+public @interface Retry {
 
-    Class<? extends RuntimeException> exception() default IllegalArgumentException.class;
+    int attempts() default 3;
 
 }
