@@ -1,4 +1,4 @@
-package pl.training.shop.commons.profiler;
+package pl.training.shop.commons.aop.timer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
