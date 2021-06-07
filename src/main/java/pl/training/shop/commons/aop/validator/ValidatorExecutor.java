@@ -8,16 +8,18 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Validator;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Optional;
 
 @Aspect
 @Component
 @RequiredArgsConstructor
-public class ModelValidator {
+public class ValidatorExecutor {
 
-    private final ValidatorService validatorService;
+    private final Validator validator;
 
     @Before("execution(* *(@Validate (*)))")
     @SneakyThrows
@@ -31,7 +33,7 @@ public class ModelValidator {
         for (int index = 0; index < arguments.length; index++) {
             var validateAnnotation = getValidateAnnotation(annotations[index]);
             if (validateAnnotation.isPresent()) {
-                validatorService.validate(arguments[index], validateAnnotation.get().exception());
+                validate(arguments[index], validateAnnotation.get().exception());
             }
         }
     }
@@ -41,6 +43,18 @@ public class ModelValidator {
                 .filter(annotation -> annotation instanceof Validate)
                 .map(annotation -> (Validate) annotation)
                 .findFirst();
+    }
+
+    private <O, E extends RuntimeException> void validate(O object, Class<E> exceptionType) throws E {
+        var violations = validator.validate(object);
+        if (!violations.isEmpty()) {
+            try {
+                var exception = exceptionType.getDeclaredConstructor();
+                throw exception.newInstance();
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
 }
