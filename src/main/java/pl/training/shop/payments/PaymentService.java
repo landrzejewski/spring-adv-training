@@ -1,8 +1,11 @@
 package pl.training.shop.payments;
 
 import lombok.RequiredArgsConstructor;
-import pl.training.shop.commons.TimeProvider;
+import org.springframework.stereotype.Service;
+import pl.training.shop.commons.retry.Retry;
+import pl.training.shop.commons.time.TimeProvider;
 
+@Service
 @RequiredArgsConstructor
 public class PaymentService implements Payments {
 
@@ -10,6 +13,9 @@ public class PaymentService implements Payments {
     private final PaymentRepository paymentRepository;
     private final TimeProvider timeProvider;
 
+    @Retry
+    //@LogExecutionTime
+    //@LogPayments
     @Override
     public Payment process(PaymentRequest paymentRequest) {
         var payment = createPayment(paymentRequest);

@@ -1,9 +1,12 @@
 package pl.training.shop.payments;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Repository
 public class InMemoryPaymentRepository implements PaymentRepository {
 
     private final Set<Payment> payments = new HashSet<>();

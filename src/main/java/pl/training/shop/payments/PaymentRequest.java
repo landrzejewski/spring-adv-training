@@ -1,11 +1,13 @@
 package pl.training.shop.payments;
 
 import lombok.Getter;
+import lombok.ToString;
 import org.javamoney.moneta.FastMoney;
 
 import java.util.Map;
 
 @Getter
+@ToString
 public class PaymentRequest {
 
     private final FastMoney value;
