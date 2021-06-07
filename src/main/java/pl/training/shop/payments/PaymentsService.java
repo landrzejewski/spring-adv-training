@@ -23,8 +23,7 @@ public class PaymentsService implements Payments {
 
     private Payment createPayment(PaymentRequest paymentRequest) {
         return Payment.builder()
-                .id("01")
-                //.id(paymentIdGenerator.getNext())
+                .id(paymentIdGenerator.getNext())
                 .value(paymentRequest.getValue())
                 .properties(paymentRequest.getProperties())
                 .timestamp(timeProvider.getTimestamp())
