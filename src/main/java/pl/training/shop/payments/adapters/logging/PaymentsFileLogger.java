@@ -11,7 +11,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-//@Order(10_000)
 @Aspect
 @RequiredArgsConstructor
 public class PaymentsFileLogger implements Ordered {

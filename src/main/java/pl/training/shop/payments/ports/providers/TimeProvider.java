@@ -1,4 +1,4 @@
-package pl.training.shop.payments.ports.provider;
+package pl.training.shop.payments.ports.providers;
 
 import java.time.Instant;
 
