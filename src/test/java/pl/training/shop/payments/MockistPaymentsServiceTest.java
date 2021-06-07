@@ -15,17 +15,17 @@ import static org.mockito.Mockito.when;
 import static pl.training.shop.payments.PaymentsFixtures.*;
 
 @ExtendWith(MockitoExtension.class)
-class MockistPaymentServiceTest {
+class MockistPaymentsServiceTest {
 
     @Mock
-    private PaymentRepository paymentRepository;
-    private PaymentService sut;
+    private PaymentsRepository paymentsRepository;
+    private PaymentsService sut;
 
     @BeforeEach
     void beforeEach() {
         //paymentRepository = mock(PaymentRepository.class);
-        when(paymentRepository.save(any(Payment.class))).then(returnsFirstArg());
-        sut = new PaymentService(() -> PAYMENT_ID, paymentRepository, () -> TIMESTAMP);
+        when(paymentsRepository.save(any(Payment.class))).then(returnsFirstArg());
+        sut = new PaymentsService(() -> PAYMENT_ID, paymentsRepository, () -> TIMESTAMP);
     }
 
     @Test
@@ -37,7 +37,7 @@ class MockistPaymentServiceTest {
     @Test
     void given_a_payment_request_when_process_the_created_payment_is_persisted() {
         var payment = sut.process(VALID_PAYMENT_REQUEST);
-        verify(paymentRepository).save(payment);
+        verify(paymentsRepository).save(payment);
     }
 
 }
