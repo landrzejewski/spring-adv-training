@@ -2,6 +2,16 @@ package pl.training.shop.payments;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.training.shop.payments.adapters.logging.PaymentsFileLogger;
+import pl.training.shop.payments.application.GetPaymentService;
+import pl.training.shop.payments.application.PaymentIdGenerator;
+import pl.training.shop.payments.application.ProcessPaymentService;
+import pl.training.shop.payments.application.UUIDPaymentIdGenerator;
+import pl.training.shop.payments.ports.persistence.PaymentsQueries;
+import pl.training.shop.payments.ports.persistence.PaymentsUpdates;
+import pl.training.shop.payments.ports.provider.TimeProvider;
+import pl.training.shop.payments.ports.usecases.GetPaymentUseCase;
+import pl.training.shop.payments.ports.usecases.ProcessPaymentUseCase;
 
 import java.nio.file.Paths;
 
@@ -11,6 +21,21 @@ public class PaymentsConfiguration {
     @Bean
     public PaymentsFileLogger paymentFileLogger() {
         return new PaymentsFileLogger(Paths.get("logs.txt"));
+    }
+
+    @Bean
+    public PaymentIdGenerator paymentIdGenerator() {
+        return new UUIDPaymentIdGenerator();
+    }
+
+    @Bean
+    public ProcessPaymentUseCase processPaymentUseCase(PaymentIdGenerator paymentIdGenerator, PaymentsUpdates paymentsUpdates, TimeProvider timeProvider) {
+        return new ProcessPaymentService(paymentIdGenerator, paymentsUpdates, timeProvider);
+    }
+
+    @Bean
+    public GetPaymentUseCase getPaymentUseCase(PaymentsQueries paymentsQueries) {
+        return new GetPaymentService(paymentsQueries);
     }
 
 }

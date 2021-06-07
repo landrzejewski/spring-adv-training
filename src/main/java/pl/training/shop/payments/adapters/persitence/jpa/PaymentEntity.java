@@ -1,9 +1,11 @@
-package pl.training.shop.payments;
+package pl.training.shop.payments.adapters.persitence.jpa;
 
-import lombok.*;
+import lombok.Data;
 import org.javamoney.moneta.FastMoney;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.Instant;
@@ -11,11 +13,8 @@ import java.util.Map;
 import java.util.Objects;
 
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class Payment {
+public class PaymentEntity {
 
     @Id
     @Pattern(regexp = "\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}")
@@ -25,22 +24,17 @@ public class Payment {
     @ElementCollection
     private Map<String, String> properties;
     private Instant timestamp;
-    @Enumerated(EnumType.STRING)
-    private PaymentStatus status;
-
-    public boolean hasId(String id) {
-        return this.id.equals(id);
-    }
+    private String status;
 
     @Override
     public boolean equals(Object otherPayment) {
         if (this == otherPayment) {
             return true;
         }
-        if (!(otherPayment instanceof Payment)) {
+        if (!(otherPayment instanceof PaymentEntity)) {
             return false;
         }
-        var payment = (Payment) otherPayment;
+        var payment = (PaymentEntity) otherPayment;
         return Objects.equals(id, payment.getId());
     }
 

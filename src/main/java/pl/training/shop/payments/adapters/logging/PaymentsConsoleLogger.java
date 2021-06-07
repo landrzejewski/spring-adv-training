@@ -1,11 +1,13 @@
 
-package pl.training.shop.payments;
+package pl.training.shop.payments.adapters.logging;
 
 import lombok.extern.java.Log;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import pl.training.shop.payments.ports.usecases.PaymentRequest;
+import pl.training.shop.payments.domain.Payment;
 
 @Order(100_000)
 @Aspect
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Log
 public class PaymentsConsoleLogger {
 
-    @Pointcut("@annotation(LogPayments)")
+    @Pointcut("@annotation(pl.training.shop.payments.ports.usecases.PaymentProcess)")
     public void logPayments() {
     }
 

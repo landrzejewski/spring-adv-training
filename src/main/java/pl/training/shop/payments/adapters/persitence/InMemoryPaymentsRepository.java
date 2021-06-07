@@ -1,14 +1,17 @@
-package pl.training.shop.payments;
+package pl.training.shop.payments.adapters.persitence;
 
 import org.springframework.stereotype.Repository;
 import pl.training.shop.commons.validator.Validate;
+import pl.training.shop.payments.domain.Payment;
+import pl.training.shop.payments.ports.persistence.PaymentsQueries;
+import pl.training.shop.payments.ports.persistence.PaymentsUpdates;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public class InMemoryPaymentsRepository implements PaymentsRepository {
+public class InMemoryPaymentsRepository implements PaymentsQueries, PaymentsUpdates {
 
     private final Set<Payment> payments = new HashSet<>();
 

@@ -1,4 +1,4 @@
-package pl.training.shop.payments;
+package pl.training.shop.payments.ports.usecases;
 
 public class PaymentNotFoundException extends RuntimeException {
 }

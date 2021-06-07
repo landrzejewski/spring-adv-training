@@ -1,6 +1,7 @@
-package pl.training.shop.commons.time;
+package pl.training.shop.payments.adapters.provider;
 
 import org.springframework.stereotype.Service;
+import pl.training.shop.payments.ports.provider.TimeProvider;
 
 import java.time.Instant;
 

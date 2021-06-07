@@ -1,11 +1,11 @@
-package pl.training.shop.payments;
+package pl.training.shop.payments.adapters.logging;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
+import pl.training.shop.payments.domain.Payment;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +18,7 @@ public class PaymentsFileLogger implements Ordered {
 
     private final Path path;
 
-    @AfterReturning(value = "@annotation(LogPayments)", returning = "payment")
+    @AfterReturning(value = "@annotation(pl.training.shop.payments.ports.usecases.PaymentProcess)", returning = "payment")
     @SneakyThrows
     public void log(Payment payment) {
         Files.writeString(path, payment.toString() + "\n", StandardOpenOption.APPEND);
