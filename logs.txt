@@ -9,3 +9,4 @@ Payment(id=1d698a2f-6fc5-4bc9-8776-fa3a32bee319, value=PLN 1000.00, properties={
 Payment(id=4e7aa3dd-3807-4031-aca5-b3e553dd6dbb, value=PLN 1000.00, properties={key=value}, timestamp=2021-06-07T16:32:02.885011Z, status=STARTED)
 Payment(id=7bb10962-8ab5-4550-87a8-7900157ade1b, value=PLN 1000.00, properties={key=value}, timestamp=2021-06-07T16:32:02.951811Z, status=STARTED)
 Payment(id=64fc3dc6-9497-4414-8f17-4557fad79f48, value=PLN 1000.00, properties={key=value}, timestamp=2021-06-07T16:33:58.395788Z, status=STARTED)
+Payment(id=0a06427b-b3be-4164-90d7-bf00cf64a412, value=PLN 1000.00, properties={}, timestamp=2021-06-07T17:35:06.674509600Z, status=STARTED)
