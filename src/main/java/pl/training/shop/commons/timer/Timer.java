@@ -1,4 +1,4 @@
-package pl.training.shop.commons.profiler;
+package pl.training.shop.commons.timer;
 
 import lombok.extern.java.Log;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Log
-public class Profiler {
+public class Timer {
 
-    @Around("execution(* pl.training.shop.payments.application.ProcessPaymentService.process(..))")
-    //@Around("bean(inMemoryPaymentRepository) || @annotation(LogExecutionTime)")
+    @Around("@annotation(LogExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         var startTime = System.nanoTime();
         var result = proceedingJoinPoint.proceed();
