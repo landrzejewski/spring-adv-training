@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 public class PaymentsConfiguration {
 
     @Bean
-    public FilePaymentsLogger paymentFileLogger() {
+    public FilePaymentsLogger filePaymentsLogger() {
         return new FilePaymentsLogger(Paths.get("logs.txt"));
     }
 
