@@ -13,26 +13,26 @@ import org.springframework.stereotype.Component;
 @Log
 public class ConsolePaymentsLogger {
 
-    @Pointcut("@annotation(LogPayments)")
-    public void logPayments() {
+    @Pointcut("@annotation(PaymentProcess)")
+    public void paymentProcess() {
     }
 
-    @Before("logPayments() && args(paymentRequest)")
+    @Before("paymentProcess() && args(paymentRequest)")
     public void beforePayment(JoinPoint joinPoint, PaymentRequest paymentRequest) {
         log.info("New payment request: " + paymentRequest);
     }
 
-    @After("logPayments()")
+    @After("paymentProcess()")
     public void afterPayment() {
         log.info("After payment");
     }
 
-    @AfterReturning(value = "logPayments()", returning = "payment")
+    @AfterReturning(value = "paymentProcess()", returning = "payment")
     public void log(Payment payment) {
         log.info("Payment created: " + payment);
     }
 
-    @AfterThrowing(value = "logPayments()", throwing = "exception")
+    @AfterThrowing(value = "paymentProcess()", throwing = "exception")
     public void log(RuntimeException exception) {
         log.info("Payment exception: " + exception);
     }

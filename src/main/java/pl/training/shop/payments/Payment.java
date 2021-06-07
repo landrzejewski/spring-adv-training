@@ -23,6 +23,9 @@ public class Payment {
     @NotNull
     private FastMoney value;
     @ElementCollection
+    @CollectionTable(name = "PAYMENTS_PROPERTIES", joinColumns=@JoinColumn(name = "payment_id"))
+    @MapKeyColumn(name = "KEY")
+    @Column(name = "VALUE")
     private Map<String, String> properties;
     private Instant timestamp;
     @Enumerated(EnumType.STRING)
