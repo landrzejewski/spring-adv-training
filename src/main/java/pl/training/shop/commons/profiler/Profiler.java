@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Log
 public class Profiler {
 
-    @Around("execution(* pl.training.shop.payments.PaymentService.process(..))")
+    @Around("execution(* pl.training.shop.payments.PaymentsService.process(..))")
     //@Around("bean(inMemoryPaymentRepository) || @annotation(LogExecutionTime)")
     public Object logExecutionTime(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         var startTime = System.nanoTime();

@@ -1,6 +1,7 @@
 package pl.training.shop.commons.validator;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -11,8 +12,6 @@ import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.Optional;
 
-import static java.util.stream.IntStream.range;
-
 @Aspect
 @Component
 @RequiredArgsConstructor
@@ -21,20 +20,20 @@ public class ModelValidator {
     private final ValidatorService validatorService;
 
     @Before("execution(* *(@Validate (*)))")
+    @SneakyThrows
     public void validate(JoinPoint joinPoint) {
-        var methodSignature = (MethodSignature) joinPoint.getSignature();
+        var signature = (MethodSignature) joinPoint.getSignature();
+        var methodName = signature.getMethod().getName();
+        var parameterTypes = signature.getMethod().getParameterTypes();
+        var annotations = joinPoint.getTarget().getClass().getMethod(methodName, parameterTypes).getParameterAnnotations();
         var arguments = joinPoint.getArgs();
-        range(0, arguments.length).forEach(index -> validate(methodSignature, arguments[index], index));
-    }
 
-    private void validate(MethodSignature methodSignature, Object argument, int argumentIndex) {
-        var annotations= getAnnotations(methodSignature, argumentIndex);
-        var validateAnnotation = getValidateAnnotation(annotations);
-        validateAnnotation.ifPresent(validate -> validatorService.validate(argument, validate.exception()));
-    }
-
-    private Annotation[] getAnnotations(MethodSignature methodSignature, int argumentIndex) {
-        return methodSignature.getMethod().getParameterAnnotations()[argumentIndex];
+        for (int index = 0; index < arguments.length; index++) {
+            var validateAnnotation = getValidateAnnotation(annotations[index]);
+            if (validateAnnotation.isPresent()) {
+                validatorService.validate(arguments[index], validateAnnotation.get().exception());
+            }
+        }
     }
 
     private Optional<Validate> getValidateAnnotation(Annotation[] annotations) {

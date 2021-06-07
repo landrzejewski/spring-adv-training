@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Log
-public class PaymentConsoleLogger {
+public class PaymentsConsoleLogger {
 
     @Pointcut("@annotation(LogPayments)")
     public void logPayments() {

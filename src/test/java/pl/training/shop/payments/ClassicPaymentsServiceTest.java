@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pl.training.shop.payments.PaymentsFixtures.*;
 
 @ExtendWith(MockitoExtension.class)
-class ClassicPaymentServiceTest {
+class ClassicPaymentsServiceTest {
 
-    private PaymentService sut;
+    private PaymentsService sut;
 
     @BeforeEach
     void beforeEach() {
-        sut = new PaymentService(() -> PAYMENT_ID, new InMemoryPaymentRepository(), () -> TIMESTAMP);
+        sut = new PaymentsService(() -> PAYMENT_ID, new InMemoryPaymentsRepository(), () -> TIMESTAMP);
     }
 
     @Test
