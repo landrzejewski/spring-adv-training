@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Log
 public class Timer {
 
-    @Around("@annotation(LogExecutionTime)")
+    @Around("@annotation(pl.training.shop.commons.aop.timer.MeasureTime)")
     public Object logExecutionTime(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         var startTime = System.nanoTime();
         var result = proceedingJoinPoint.proceed();
