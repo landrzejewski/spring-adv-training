@@ -12,7 +12,7 @@ public class Application {
 
     private static final String BASE_PACKAGE = "pl.training.shop";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BASE_PACKAGE)) {
             var payments = context.getBean(Payments.class);
             var paymentRequest = new PaymentRequest(LocalMoney.of(1_000), emptyMap());

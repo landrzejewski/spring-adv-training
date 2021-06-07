@@ -2,8 +2,11 @@ package pl.training.shop.payments;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 import pl.training.shop.commons.time.TimeProvider;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class PaymentsService implements Payments {
@@ -11,6 +14,7 @@ public class PaymentsService implements Payments {
     private final PaymentIdGenerator paymentIdGenerator;
     private final PaymentsRepository paymentsRepository;
     private final TimeProvider timeProvider;
+    //private final TransactionTemplate transactionTemplate;
 
     //@Retry(attempts = 4)
     //@LogExecutionTime
@@ -19,6 +23,7 @@ public class PaymentsService implements Payments {
     public Payment process(PaymentRequest paymentRequest) {
         var payment = createPayment(paymentRequest);
         return paymentsRepository.save(payment);
+        //return transactionTemplate.execute(tx -> paymentsRepository.save(payment));
     }
 
     private Payment createPayment(PaymentRequest paymentRequest) {
