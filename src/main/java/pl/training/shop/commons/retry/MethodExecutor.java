@@ -1,10 +1,11 @@
 package pl.training.shop.commons.retry;
 
-import lombok.Setter;
 import lombok.extern.java.Log;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -12,11 +13,14 @@ import org.springframework.stereotype.Component;
 @Log
 public class MethodExecutor {
 
-    @Setter
-    private int attempts = 3;
-
     @Around("@annotation(Retry)")
     public Object execute(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        var method = ((MethodSignature) proceedingJoinPoint.getSignature()).getMethod();
+        var annotation = AnnotationUtils.findAnnotation(method, Retry.class);
+        if (annotation == null) {
+            throw new IllegalStateException();
+        }
+        var attempts = annotation.attempts();
         var currentAttempt = 0;
         Throwable throwable;
         do {

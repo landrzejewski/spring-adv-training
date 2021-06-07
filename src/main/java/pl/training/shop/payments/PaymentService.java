@@ -13,7 +13,7 @@ public class PaymentService implements Payments {
     private final PaymentRepository paymentRepository;
     private final TimeProvider timeProvider;
 
-    //@Retry
+    @Retry(attempts = 4)
     //@LogExecutionTime
     //@LogPayments
     @Override
