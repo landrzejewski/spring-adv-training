@@ -17,7 +17,7 @@ public class FilePaymentsLogger implements Ordered {
 
     private final Path path;
 
-    @AfterReturning(value = "@annotation(pl.training.shop.payments.ports.usecases.PaymentProcess)", returning = "payment")
+    @AfterReturning(value = "@annotation(pl.training.shop.payments.application.PaymentProcess)", returning = "payment")
     @SneakyThrows
     public void log(Payment payment) {
         Files.writeString(path, payment.toString() + "\n", StandardOpenOption.APPEND);

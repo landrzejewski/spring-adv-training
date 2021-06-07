@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import pl.training.shop.payments.domain.Payment;
 import pl.training.shop.payments.domain.PaymentStatus;
 import pl.training.shop.payments.ports.persistence.PaymentsUpdates;
-import pl.training.shop.payments.ports.providers.TimeProvider;
-import pl.training.shop.payments.ports.usecases.PaymentProcess;
-import pl.training.shop.payments.ports.usecases.PaymentRequest;
+import pl.training.shop.payments.ports.time.TimeProvider;
 import pl.training.shop.payments.ports.usecases.ProcessPaymentUseCase;
 
 import javax.transaction.Transactional;

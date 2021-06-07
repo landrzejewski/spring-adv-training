@@ -9,7 +9,7 @@ import pl.training.shop.payments.application.ProcessPaymentService;
 import pl.training.shop.payments.application.UUIDPaymentIdGenerator;
 import pl.training.shop.payments.ports.persistence.PaymentsQueries;
 import pl.training.shop.payments.ports.persistence.PaymentsUpdates;
-import pl.training.shop.payments.ports.providers.TimeProvider;
+import pl.training.shop.payments.ports.time.TimeProvider;
 import pl.training.shop.payments.ports.usecases.GetPaymentUseCase;
 import pl.training.shop.payments.ports.usecases.ProcessPaymentUseCase;
 
@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 public class PaymentsConfiguration {
 
     @Bean
-    public FilePaymentsLogger paymentFileLogger() {
+    public FilePaymentsLogger filePaymentLogger() {
         return new FilePaymentsLogger(Paths.get("logs.txt"));
     }
 

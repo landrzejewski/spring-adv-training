@@ -3,7 +3,7 @@ package pl.training.shop;
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import pl.training.shop.commons.money.LocalMoney;
-import pl.training.shop.payments.ports.usecases.PaymentRequest;
+import pl.training.shop.payments.application.PaymentRequest;
 import pl.training.shop.payments.ports.usecases.ProcessPaymentUseCase;
 
 import static java.util.Collections.emptyMap;

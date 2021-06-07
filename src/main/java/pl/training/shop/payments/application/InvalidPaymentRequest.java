@@ -1,4 +1,4 @@
-package pl.training.shop.payments.ports.usecases;
+package pl.training.shop.payments.application;
 
 public class InvalidPaymentRequest extends RuntimeException {
 }

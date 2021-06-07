@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import pl.training.shop.payments.domain.Payment;
 import pl.training.shop.payments.ports.persistence.PaymentsQueries;
 import pl.training.shop.payments.ports.usecases.GetPaymentUseCase;
-import pl.training.shop.payments.ports.usecases.PaymentNotFoundException;
 
 import javax.transaction.Transactional;
 

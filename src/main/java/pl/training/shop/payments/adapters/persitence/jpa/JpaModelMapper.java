@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import pl.training.shop.payments.domain.Payment;
 
 @Mapper(componentModel = "spring")
-public interface JpaPersistenceMapper {
+public interface JpaModelMapper {
 
     PaymentEntity toEntity(Payment payment);
 
