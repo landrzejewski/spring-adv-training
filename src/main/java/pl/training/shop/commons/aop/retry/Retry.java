@@ -1,4 +1,4 @@
-package pl.training.shop.commons.retry;
+package pl.training.shop.commons.aop.retry;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

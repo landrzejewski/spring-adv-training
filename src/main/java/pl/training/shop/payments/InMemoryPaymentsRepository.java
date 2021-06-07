@@ -1,7 +1,7 @@
 package pl.training.shop.payments;
 
 import org.springframework.stereotype.Repository;
-import pl.training.shop.commons.validator.Validate;
+import pl.training.shop.commons.aop.validator.Validate;
 
 import java.util.HashSet;
 import java.util.Optional;
