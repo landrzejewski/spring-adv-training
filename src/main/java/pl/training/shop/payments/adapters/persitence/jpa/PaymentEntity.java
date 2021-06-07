@@ -6,12 +6,14 @@ import org.javamoney.moneta.FastMoney;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.Instant;
 import java.util.Map;
 import java.util.Objects;
 
+@Table(name = "payments")
 @Entity
 @Data
 public class PaymentEntity {
