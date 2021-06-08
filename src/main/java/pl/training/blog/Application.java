@@ -10,7 +10,7 @@ import static java.util.Collections.emptyMap;
 @Log
 public class Application {
 
-    private static final String BASE_PACKAGE = "pl.training.shop";
+    private static final String BASE_PACKAGE = "pl.training.blog";
 
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(BASE_PACKAGE)) {
