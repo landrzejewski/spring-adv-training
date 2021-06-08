@@ -1,0 +1,13 @@
+- Autor publikuje artykuły ma repozytorium git w postaci dokumentów markdown umieszczonych w katalogach o dowolnej strukturze
+- Z każdym artykułem mogą być powiązane metadane jak np. data publikacji, tagi, kategoria
+- Metadane mają format dokumentu yml i są umieszczane w sekcji nagłówkowej artykułu, oddzielonej od treści „---"
+- Publikacja zmian powinna skutkować ich automatycznym zaimportowaniem oraz poinformowaniem użytkowników/subskrybentów o nowych artykułach
+- Dostęp do wybranych artykułów może być ograniczony - wymagać tego, aby użytkownik był zalogowany i miał opłacony dostęp
+- Opłacenie dostępu odbywa się poprzez zew. system - po zainicjowaniu płatności otrzymujemy id transakcji i na tej podstawie jesteśmy o nim powiadamiani
+- Blog powinien oferować dostęp do artykułów według poniższych założeń:
+    - Wszystkie artykuły z uwzględnieniem stronicowania, posortowane po dacie publikacji
+    - Artykuły należące do danej kategorii z uwzględnieniem stronicowania, posortowane po dacie publikacji
+    - Artykuły posiadające określony tag/tagi z uwzględnieniem stronicowania, posortowane po dacie publikacji
+    - Pojedynczy artykuł na podstawie unikalnego url
+    - Kategorie i tytuły artykułów w nich zawartych z uwzględnieniem stronicowania, posortowane po dacie publikacji
+    - Artykuły zawierające wskazane słowo kluczowe/frazę posortowane po ilości wystąpień
