@@ -1,6 +1,5 @@
 package pl.training.blog.articles.adapters.persistence.jpa;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,10 +11,9 @@ import java.util.Set;
 
 import static java.util.Arrays.asList;
 
-@RequiredArgsConstructor
 public class ArticleSpecification implements Specification<ArticleEntity> {
 
-    private final Set<SearchCriteria> searchCriteria;
+    private final Set<SearchCriteria> searchCriteria = new HashSet<>();
 
     public void add(SearchCriteria ... searchCriteria) {
         this.searchCriteria.addAll(asList(searchCriteria));
@@ -48,10 +46,10 @@ public class ArticleSpecification implements Specification<ArticleEntity> {
                     predicates.add(builder.like(root.get(criteria.getPropertyName()), "%" + criteria.getValue() + "%"));
                     break;
                 case MATCH_START:
-                    predicates.add(builder.like(root.get(criteria.getPropertyName()), "%" + criteria.getValue()));
+                    predicates.add(builder.like(root.get(criteria.getPropertyName()), criteria.getValue() + "%"));
                     break;
                 case MATCH_END:
-                    predicates.add(builder.like(root.get(criteria.getPropertyName()), criteria.getValue() + "%"));
+                    predicates.add(builder.like(root.get(criteria.getPropertyName()), "%" + criteria.getValue()));
                     break;
                 case IN:
                     predicates.add(builder.in(root.get(criteria.getPropertyName())).value(criteria.getValue()));

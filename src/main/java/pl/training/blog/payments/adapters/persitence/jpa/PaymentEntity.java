@@ -10,6 +10,7 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Objects;
 
+@NamedEntityGraph(name = "PaymentEntity.eagerProperties", attributeNodes = @NamedAttributeNode("properties"))
 @NamedQuery(name = "PaymentEntity.findByStatusValue", query = "select p from PaymentEntity p where p.status = :status order by p.timestamp asc")
 @NamedQuery(name = PaymentEntity.FIND_FAILED_PAYMENTS, query = "select p from PaymentEntity p where p.status = 'FAILED' or p.status = 'CANCELED'")
 @Table(name = "payments")
@@ -24,13 +25,15 @@ public class PaymentEntity {
     private String id;
     @NotNull
     private FastMoney value;
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection//(fetch = FetchType.EAGER)
     @CollectionTable(name = "PAYMENTS_PROPERTIES", joinColumns=@JoinColumn(name = "payment_id"))
     @MapKeyColumn(name = "KEY")
     @Column(name = "VALUE")
     private Map<String, String> properties;
     private Instant timestamp;
     private String status;
+    @Version
+    private Long version;
 
     @Override
     public boolean equals(Object otherPayment) {
