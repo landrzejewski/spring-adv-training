@@ -10,17 +10,21 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Objects;
 
+@NamedQuery(name = "PaymentEntity.findByStatusValue", query = "select p from PaymentEntity p where p.status = :status order by p.timestamp asc")
+@NamedQuery(name = PaymentEntity.FIND_FAILED_PAYMENTS, query = "select p from PaymentEntity p where p.status = 'FAILED' or p.status = 'CANCELED'")
 @Table(name = "payments")
 @Entity
 @Data
 public class PaymentEntity {
+
+    public static final String FIND_FAILED_PAYMENTS = "PaymentEntity.findFailedPayment";
 
     @Id
     @Pattern(regexp = "\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}")
     private String id;
     @NotNull
     private FastMoney value;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "PAYMENTS_PROPERTIES", joinColumns=@JoinColumn(name = "payment_id"))
     @MapKeyColumn(name = "KEY")
     @Column(name = "VALUE")
