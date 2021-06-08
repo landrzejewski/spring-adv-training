@@ -17,8 +17,11 @@ import pl.training.blog.payments.adapters.persitence.jpa.SpringPaymentsRepositor
 import pl.training.blog.payments.application.PaymentRequest;
 import pl.training.blog.payments.domain.PaymentStatus;
 import pl.training.blog.payments.ports.usecases.ProcessPaymentUseCase;
+import pl.training.blog.users.adapters.persistence.SpringUsersRepository;
+import pl.training.blog.users.adapters.persistence.UserDocument;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 import static java.util.Collections.emptyMap;
 import static pl.training.blog.payments.domain.PaymentStatus.CANCELED;
@@ -32,6 +35,7 @@ public class Application implements ApplicationRunner {
     private final ProcessPaymentUseCase payments;
     private final SpringPaymentsRepository paymentsRepository;
     private final SpringArticlesRepository springArticlesRepository;
+    private final SpringUsersRepository springUsersRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -43,7 +47,7 @@ public class Application implements ApplicationRunner {
         var payment = payments.process(paymentRequest);
         // var result = paymentsRepository.findByStatus(STARTED.name());
         // var result = paymentsRepository.findByStatusOrderByTimestampAsc(STARTED.name());
-         var result = paymentsRepository.findByStatusValue(STARTED.name());
+        // var result = paymentsRepository.findByStatusValue(STARTED.name());
         // var result = paymentsRepository.findFailedPayments(0, 10);
         // var result = paymentsRepository.findPaymentInfoById(payment.getId());
         // paymentsRepository.findPaymentStatusById(payment.getId())
@@ -86,6 +90,13 @@ public class Application implements ApplicationRunner {
         // var result = springArticlesRepository.findAll(Example.of(example, exampleMatcher));
 
         // var page = springArticlesRepository.findAll(PageRequest.of(0, 10));
+
+        var user = springUsersRepository.save(UserDocument.builder()
+                .lastName("Kowalski")
+                .firstName("Jan")
+                .dateOfBirth(LocalDate.now())
+                .build());
+        var result = springUsersRepository.findById(user.getId());
         System.out.println(result);
     }
 

@@ -18,3 +18,7 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=training@sages.pl
       - PGADMIN_DEFAULT_PASSWORD=admin
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
