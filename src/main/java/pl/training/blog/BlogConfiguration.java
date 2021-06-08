@@ -21,7 +21,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
 @Configuration
-public class ShopConfiguration {
+public class BlogConfiguration {
 
     @Bean
     public LocalValidatorFactoryBean validator() {
