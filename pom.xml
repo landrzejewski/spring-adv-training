@@ -6,16 +6,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.training</groupId>
-    <artifactId>shop</artifactId>
+    <artifactId>blog</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <spring-version>5.3.7</spring-version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.7.0</junit.version>
-        <mockito.version>3.6.0</mockito.version>
+        <spring-version>5.3.7</spring-version>
+        <junit.version>5.7.2</junit.version>
+        <mockito.version>3.9.0</mockito.version>
     </properties>
 
     <build>
