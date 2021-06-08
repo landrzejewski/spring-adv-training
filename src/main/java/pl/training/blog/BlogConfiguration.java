@@ -7,7 +7,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @EnableAspectJAutoProxy
 @Configuration
-public class ShopConfiguration {
+public class BlogConfiguration {
 
     @Bean
     public LocalValidatorFactoryBean validator() {
