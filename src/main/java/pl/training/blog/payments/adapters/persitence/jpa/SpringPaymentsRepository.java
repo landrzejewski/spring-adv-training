@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SpringPaymentsRepository extends JpaRepository<PaymentEntity, String>, SpringPaymentsRepositoryCustom {
 
@@ -14,5 +15,11 @@ public interface SpringPaymentsRepository extends JpaRepository<PaymentEntity, S
     List<PaymentEntity> findByStatus(@Param("status") String status);
 
     List<PaymentEntity> findByStatusValue(String status);
+
+    @Query("select new pl.training.blog.payments.adapters.persitence.jpa.PaymentInfo(p.id, p.status) from PaymentEntity p where p.id = :id")
+    Optional<PaymentInfo> findPaymentInfoById(@Param("id") String id);
+
+    @Query("select p.id as id, p.status as status from PaymentEntity p where p.id = :id")
+    Optional<PaymentDescription> findPaymentStatusById(@Param("id") String id);
 
 }

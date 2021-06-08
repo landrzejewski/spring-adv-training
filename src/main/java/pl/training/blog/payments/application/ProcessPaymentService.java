@@ -30,7 +30,7 @@ public class ProcessPaymentService implements ProcessPaymentUseCase {
                 .value(paymentRequest.getValue())
                 .properties(paymentRequest.getProperties())
                 .timestamp(timeProvider.getTimestamp())
-                .status(PaymentStatus.CANCELED)
+                .status(PaymentStatus.STARTED)
                 .build();
     }
 
