@@ -1,9 +1,0 @@
-spring:
-  datasource:
-    username: admin
-    password: admin
-    url: jdbc:postgresql://localhost:5432/blog
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
