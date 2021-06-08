@@ -1,9 +1,9 @@
-package pl.training.shop;
+package pl.training.blog;
 
 import lombok.extern.java.Log;
-import pl.training.shop.commons.money.LocalMoney;
-import pl.training.shop.commons.time.SystemTimeProvider;
-import pl.training.shop.payments.*;
+import pl.training.blog.commons.money.LocalMoney;
+import pl.training.blog.commons.time.SystemTimeProvider;
+import pl.training.blog.payments.*;
 
 import static java.util.Collections.emptyMap;
 

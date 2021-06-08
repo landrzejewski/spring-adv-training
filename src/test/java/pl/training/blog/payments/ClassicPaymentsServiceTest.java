@@ -1,4 +1,4 @@
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static pl.training.shop.payments.PaymentsFixtures.*;
+import static pl.training.blog.payments.PaymentsFixtures.*;
 
 @ExtendWith(MockitoExtension.class)
 class ClassicPaymentsServiceTest {

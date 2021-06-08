@@ -1,7 +1,7 @@
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import lombok.RequiredArgsConstructor;
-import pl.training.shop.commons.time.TimeProvider;
+import pl.training.blog.commons.time.TimeProvider;
 
 @RequiredArgsConstructor
 public class PaymentsService implements Payments {

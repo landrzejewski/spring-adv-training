@@ -1,10 +1,10 @@
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import org.junit.jupiter.api.Test;
 
 import static java.util.Collections.emptyMap;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static pl.training.shop.commons.money.LocalMoney.zero;
+import static pl.training.blog.commons.money.LocalMoney.zero;
 
 class PaymentRequestTest {
 

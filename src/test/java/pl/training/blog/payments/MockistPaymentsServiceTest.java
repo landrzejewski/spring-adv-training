@@ -1,4 +1,4 @@
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -12,7 +12,7 @@ import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static pl.training.shop.payments.PaymentsFixtures.*;
+import static pl.training.blog.payments.PaymentsFixtures.*;
 
 @ExtendWith(MockitoExtension.class)
 class MockistPaymentsServiceTest {

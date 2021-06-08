@@ -1,13 +1,13 @@
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import org.javamoney.moneta.FastMoney;
-import pl.training.shop.commons.money.LocalMoney;
+import pl.training.blog.commons.money.LocalMoney;
 
 import java.time.Instant;
 import java.util.Map;
 
 import static java.util.Collections.emptyMap;
-import static pl.training.shop.payments.PaymentStatus.STARTED;
+import static pl.training.blog.payments.PaymentStatus.STARTED;
 
 class PaymentsFixtures {
 

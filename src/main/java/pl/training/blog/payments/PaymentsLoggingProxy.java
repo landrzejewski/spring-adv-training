@@ -1,5 +1,5 @@
 
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;

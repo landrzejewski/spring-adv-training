@@ -1,4 +1,4 @@
-package pl.training.shop.payments;
+package pl.training.blog.payments;
 
 import org.junit.jupiter.api.Test;
 

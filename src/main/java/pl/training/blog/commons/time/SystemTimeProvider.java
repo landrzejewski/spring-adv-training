@@ -1,4 +1,4 @@
-package pl.training.shop.commons.time;
+package pl.training.blog.commons.time;
 
 import java.time.Instant;
 
