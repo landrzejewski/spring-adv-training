@@ -1,0 +1,17 @@
+POST http://localhost:8000/payments
+Accept: application/json
+Content-Type: application/json
+
+{
+  "value": "1000 PLN",
+  "properties": {
+    "cardNumber": "123456",
+    "cvv": 255
+  }
+}
+
+###
+
+GET http://localhost:8000/payments/1b26ca62-e796-472a-8feb-d60de7a64d46
+Accept: application/json
+Content-Type: application/json
