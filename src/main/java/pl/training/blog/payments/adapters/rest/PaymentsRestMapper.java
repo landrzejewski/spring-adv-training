@@ -11,7 +11,6 @@ import pl.training.blog.payments.domain.PaymentStatus;
 @Mapper(componentModel = "spring", uses = FastMoneyMapper.class)
 interface PaymentsRestMapper {
 
-    @Mapping(source = "properties", target = "additionalInfo")
     PaymentRequest toDomain(PaymentRequestDto paymentRequestDto);
 
     PaymentDto toDto(Payment payment);

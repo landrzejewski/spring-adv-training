@@ -11,10 +11,10 @@ import pl.training.blog.payments.ports.usecases.GetPaymentUseCase;
 @RequiredArgsConstructor
 public class GetPaymentController {
 
-    private PaymentsRestMapper modelMapper;
-    private GetPaymentUseCase getPaymentUseCase;
+    private final PaymentsRestMapper modelMapper;
+    private final GetPaymentUseCase getPaymentUseCase;
 
-    @GetMapping("{id}")
+    @GetMapping("payments/{id}")
     ResponseEntity<PaymentDto> findById(@PathVariable("id") String id) {
         var payment = getPaymentUseCase.findById(id);
         var paymentDto = modelMapper.toDto(payment);

@@ -1,4 +1,4 @@
-POST http://localhost:8000/payments
+POST http://localhost:8080/payments
 Accept: application/json
 Content-Type: application/json
 
@@ -12,6 +12,6 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8000/payments/1b26ca62-e796-472a-8feb-d60de7a64d46
+GET http://localhost:8080/payments/705f0160-9ba1-494b-98df-5f37da82948e
 Accept: application/json
 Content-Type: application/json

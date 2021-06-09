@@ -44,3 +44,6 @@ Payment(id=018f6348-87eb-4d43-9548-3d7f2b91b7d0, value=PLN 1000.00, properties={
 Payment(id=6f8db43c-8ed0-4d63-b5d8-7577e1f0cd81, value=PLN 1000.00, properties={}, timestamp=2021-06-08T10:35:23.723624600Z, status=STARTED)
 Payment(id=67cbb621-de33-40df-9b08-426db9ae3234, value=PLN 1000.00, properties={}, timestamp=2021-06-08T10:52:45.832363400Z, status=STARTED)
 Payment(id=b8aa106c-3475-4847-ac3f-ac9a95e1707e, value=PLN 1000.00, properties={}, timestamp=2021-06-08T12:01:27.017544200Z, status=STARTED)
+Payment(id=90f44bef-7d5e-496b-b1e0-2b166804a7e8, value=PLN 1000.00, properties={cardNumber=123456, cvv=255}, timestamp=2021-06-09T13:38:12.439613400Z, status=STARTED)
+Payment(id=8a5ee8af-a441-4154-87fa-7ff09c8db3fd, value=PLN 1000.00, properties={cardNumber=123456, cvv=255}, timestamp=2021-06-09T13:38:48.201409Z, status=STARTED)
+Payment(id=705f0160-9ba1-494b-98df-5f37da82948e, value=PLN 1000.00, properties={cardNumber=123456, cvv=255}, timestamp=2021-06-09T13:39:26.934012700Z, status=STARTED)
