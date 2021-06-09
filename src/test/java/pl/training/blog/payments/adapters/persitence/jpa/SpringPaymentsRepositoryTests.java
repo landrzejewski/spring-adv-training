@@ -9,8 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.training.blog.payments.adapters.PaymentsFixture.STARTED_STATUS;
-import static pl.training.blog.payments.adapters.PaymentsFixture.paymentEntity;
+import static pl.training.blog.payments.adapters.PaymentsFixture.*;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
@@ -31,7 +30,7 @@ class SpringPaymentsRepositoryTests {
 
     @Test
     public void given_payment_with_particular_status_in_database_when_find_by_status_then_returns_the_payment() {
-        var actual = paymentsRepository.findByStatus(STARTED_STATUS);
+        var actual = paymentsRepository.findByStatus(PAYMENT_STATUS.name());
         assertTrue(actual.contains(paymentEntity));
     }
 
