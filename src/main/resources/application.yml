@@ -7,3 +7,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+payments-processor:
+  baseUrl: http://localhost:8081
+  path: /payments

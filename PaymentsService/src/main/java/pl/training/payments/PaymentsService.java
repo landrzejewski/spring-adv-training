@@ -29,7 +29,7 @@ public class PaymentsService {
         result.setProperties(payment.getProperties());
         result.setValue(payment.getValue());
         result.setRequestId(payment.getRequestId());
-        result.setStatus("COMPLETED");
+        result.setStatus("CONFIRMED");
         return result;
     }
 

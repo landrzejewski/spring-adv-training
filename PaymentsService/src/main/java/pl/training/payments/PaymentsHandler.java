@@ -23,7 +23,9 @@ public class PaymentsHandler {
     }
 
     public Mono<ServerResponse> process(ServerRequest serverRequest) {
-        var result = paymentsService.process(serverRequest.bodyToMono(PaymentDto.class).map(paymentMapper::toDomain));
+        var result = paymentsService.process(serverRequest.bodyToMono(PaymentDto.class)
+                .map(paymentMapper::toDomain))
+                .map(paymentMapper::toDto);
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(result, PaymentDto.class);

@@ -3,10 +3,8 @@ package pl.training.blog.payments;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.training.blog.payments.adapters.logging.FilePaymentsLogger;
-import pl.training.blog.payments.application.GetPaymentService;
-import pl.training.blog.payments.application.PaymentIdGenerator;
-import pl.training.blog.payments.application.ProcessPaymentService;
-import pl.training.blog.payments.application.UUIDPaymentIdGenerator;
+import pl.training.blog.payments.application.*;
+import pl.training.blog.payments.ports.payments.PaymentsProcessor;
 import pl.training.blog.payments.ports.persistence.PaymentsQueries;
 import pl.training.blog.payments.ports.persistence.PaymentsUpdates;
 import pl.training.blog.payments.ports.time.TimeProvider;
@@ -29,8 +27,8 @@ public class PaymentsConfiguration {
     }
 
     @Bean
-    public ProcessPaymentUseCase processPaymentUseCase(PaymentIdGenerator paymentIdGenerator, PaymentsUpdates paymentsUpdates, TimeProvider timeProvider) {
-        return new ProcessPaymentService(paymentIdGenerator, paymentsUpdates, timeProvider);
+    public ProcessPaymentUseCase processPaymentUseCase(PaymentIdGenerator paymentIdGenerator, PaymentsUpdates paymentsUpdates, PaymentsProcessor paymentsProcessor, TimeProvider timeProvider) {
+        return new ProcessPaymentService(paymentIdGenerator, paymentsUpdates, paymentsProcessor, timeProvider);
     }
 
     @Bean
