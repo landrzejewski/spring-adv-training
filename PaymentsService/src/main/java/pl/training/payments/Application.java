@@ -12,7 +12,7 @@ import java.time.Instant;
 @RequiredArgsConstructor
 public class Application implements ApplicationRunner {
 
-    private final PaymentsRepository paymentsRepository;
+    private final PaymentsService paymentsService;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -20,13 +20,8 @@ public class Application implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        var payment = new PaymentDocument();
-        payment.setStatus("STARTED");
-        payment.setTimestamp(Instant.now());
-        payment.setRequestId("123");
-        payment.setValue("100 PLN");
-        paymentsRepository.save(payment)
-                .subscribe(System.out::println);
+        paymentsService.getPayments()
+                .subscribe(System.out::println, System.out::println, () -> System.out.println("Compelte"));
     }
 
 }

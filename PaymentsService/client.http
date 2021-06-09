@@ -1,0 +1,11 @@
+POST http://localhost:8081/payments
+Accept: application/json
+Content-Type: application/json
+
+{
+
+  "requestId": "123",
+  "value": "100 PLN",
+  "properties": {}
+
+}
