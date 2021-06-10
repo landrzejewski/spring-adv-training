@@ -22,22 +22,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static pl.training.blog.payments.adapters.PaymentsFixture.*;
 import static pl.training.blog.payments.adapters.Tags.INTEGRATION;
 
-@Tag(INTEGRATION)
+/*@Tag(INTEGRATION)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = Application.class
 )
 @AutoConfigureMockMvc
-@ExtendWith(SpringExtension.class)
+@ExtendWith(SpringExtension.class)*/
 public class GetPaymentIntegrationTests {
 
-    @Autowired
+    //@Autowired
     private MockMvc mockMvc;
-    @PersistenceContext
+    //@PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
-    @Test
+    //@Transactional
+    //@Test
     public void should_return_payment_by_id() throws Exception {
         entityManager.persist(paymentEntity());
         mockMvc.perform(get("/payments/" + PAYMENT_ID)

@@ -7,3 +7,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+  thymeleaf:
+    enabled: false
