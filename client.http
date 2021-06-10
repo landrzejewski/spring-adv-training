@@ -20,3 +20,12 @@ Content-Type: application/json
 
 GET http://localhost:8080/blog-1.0-SNAPSHOT/exchange-rate?money=100%20PLN
 Accept: application/json
+
+###
+
+POST http://localhost:8080/blog-1.0-SNAPSHOT/messages
+Accept: application/json
+Content-Type: text/plain
+
+Hello JMS
+

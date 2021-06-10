@@ -2,6 +2,8 @@ package pl.training.blog.payments;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.connection.CachingConnectionFactory;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jndi.JndiTemplate;
 import pl.training.blog.jee.ExchangeRate;
 import pl.training.blog.payments.adapters.logging.FilePaymentsLogger;
@@ -15,6 +17,8 @@ import pl.training.blog.payments.ports.time.TimeProvider;
 import pl.training.blog.payments.ports.usecases.GetPaymentUseCase;
 import pl.training.blog.payments.ports.usecases.ProcessPaymentUseCase;
 
+import javax.jms.ConnectionFactory;
+import javax.jms.Queue;
 import javax.naming.NamingException;
 import java.nio.file.Paths;
 
@@ -44,6 +48,22 @@ public class PaymentsConfiguration {
     @Bean
     public ExchangeRate exchangeRate() throws NamingException {
         return new JndiTemplate().lookup("java:global/blog-1.0-SNAPSHOT/FakeExchangeRate", ExchangeRate.class);
+    }
+
+    @Bean
+    public ConnectionFactory connectionFactory() throws NamingException {
+        return new JndiTemplate().lookup("java:/ConnectionFactory", ConnectionFactory.class);
+    }
+
+    @Bean
+    public Queue messagesQueue() throws NamingException {
+        return new JndiTemplate().lookup("jboss/exported/jms/queue/Blog", Queue.class);
+    }
+
+    @Bean
+    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
+        var cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);
+        return new JmsTemplate(cachingConnectionFactory);
     }
 
 }
