@@ -2,6 +2,7 @@ package pl.training.blog.payments;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.connection.CachingConnectionFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jndi.JndiTemplate;
@@ -64,6 +65,14 @@ public class PaymentsConfiguration {
     public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
         var cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);
         return new JmsTemplate(cachingConnectionFactory);
+    }
+
+    @Bean
+    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
+        var factoryBean = new DefaultJmsListenerContainerFactory();
+        factoryBean.setConnectionFactory(connectionFactory);
+        factoryBean.setConcurrency("5-10");
+        return factoryBean;
     }
 
 }
