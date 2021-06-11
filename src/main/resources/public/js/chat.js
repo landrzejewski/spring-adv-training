@@ -22,7 +22,14 @@ $(() => {
        stopClient = Stomp.over(socket);
        stopClient.connect({user:'jan'}, () => {
            updateConnectionStatus(true);
-           stopClient.subscribe("/chat-topic/messages", onMessage)
+           let url = stopClient.ws._transport.url;
+           console.log(`Connection url: ${url}`);
+           let sessionId = url.replace('ws://localhost:8081/chat/', '');
+           sessionId = sessionId.replace('/websocket', '');
+           sessionId = sessionId.replace(/^[0-9]+\//, '');
+           console.log(`Session id: ${sessionId}`);
+           updateConnectionStatus(true);
+           stopClient.subscribe('/queue/specific-user' + sessionId, onMessage);
        });
    }
 
