@@ -35,3 +35,8 @@ GET http://localhost:8080/blog-1.0-SNAPSHOT/mails
 Accept: application/json
 
 ###
+
+GET http://localhost:8080/blog-1.0-SNAPSHOT/kafka-messages
+Accept: application/json
+
+###
