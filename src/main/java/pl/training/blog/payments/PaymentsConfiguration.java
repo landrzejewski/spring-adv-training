@@ -52,27 +52,8 @@ public class PaymentsConfiguration {
     }
 
     @Bean
-    public ConnectionFactory connectionFactory() throws NamingException {
-        return new JndiTemplate().lookup("java:/ConnectionFactory", ConnectionFactory.class);
-    }
-
-    @Bean
     public Queue messagesQueue() throws NamingException {
         return new JndiTemplate().lookup("jboss/exported/jms/queue/Blog", Queue.class);
-    }
-
-    @Bean
-    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
-        var cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);
-        return new JmsTemplate(cachingConnectionFactory);
-    }
-
-    @Bean
-    public DefaultJmsListenerContainerFactory defaultJmsListenerContainerFactory(ConnectionFactory connectionFactory) {
-        var factoryBean = new DefaultJmsListenerContainerFactory();
-        factoryBean.setConnectionFactory(connectionFactory);
-        factoryBean.setConcurrency("5-10");
-        return factoryBean;
     }
 
 }

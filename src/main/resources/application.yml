@@ -9,3 +9,19 @@ spring:
       ddl-auto: create-drop
   thymeleaf:
     enabled: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    tls: true
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enabled: true
+
+sender: blog@training.pl
+availableLanguages: pl
+defaultLanguage: pl
