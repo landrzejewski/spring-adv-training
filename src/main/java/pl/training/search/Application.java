@@ -82,7 +82,12 @@ public class Application {
         Runtime.getRuntime().addShutdownHook(new Thread(compositeDisposable::dispose));
 
         /*var request = wikipediaQuery("java")
-                 .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));*/
+                .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));*/
+
+        /*ObservableReader.from(System.in)
+                .map(String::toUpperCase)
+                .debounce(5, TimeUnit.SECONDS)
+                .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));*/
 
         /*var subscription = ObservableReader.from(System.in)
                 .debounce(5, TimeUnit.SECONDS)
@@ -97,6 +102,7 @@ public class Application {
                 .map(String::toLowerCase)
                 .subscribeOn(Schedulers.io())
                 .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));
+
 
         compositeDisposable.addAll(subscription);
     }
