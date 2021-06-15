@@ -11,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import pl.training.search.github.GitHubApi;
 import pl.training.search.github.QueryResult;
 import pl.training.search.github.Repository;
+import pl.training.search.sages.SagesApi;
 import pl.training.search.wikipedia.Article;
 import pl.training.search.wikipedia.Response;
 import pl.training.search.wikipedia.WikipediaApi;
@@ -18,6 +19,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -29,6 +32,7 @@ public class Application {
 
     private final GitHubApi gitHubApi = retrofitBuilder("https://api.github.com/").create(GitHubApi.class);
     private final WikipediaApi wikipediaApi = retrofitBuilder("https://en.wikipedia.org/w/").create(WikipediaApi.class);
+    private final SagesApi sagesApi = retrofitBuilder("https://www.sages.pl/site-backend/").create(SagesApi.class);
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     private Retrofit retrofitBuilder(String baseUrl) {
@@ -78,8 +82,18 @@ public class Application {
                 .subscribeOn(Schedulers.io());
     }
 
-    private void start() {
+
+
+    private void start() throws IOException {
         Runtime.getRuntime().addShutdownHook(new Thread(compositeDisposable::dispose));
+
+        Files.write(Paths.get("data.csv"), "nazwa;autorzy;tekst na certyfikat;ankieta przed;wymagania instalacyjne\n".getBytes(), StandardOpenOption.APPEND);
+
+        var subscription = sagesApi.getTrainings()
+                .flatMap(Observable::fromIterable)
+                //.filter(training -> training.getTextForCertificate().isBlank() || training.getPrerequisites().isEmpty() || training.getQuestionnaireBeforeTraining().isEmpty())
+                .sorted()
+                .subscribe(training -> Files.write(Paths.get("data.csv"), training.toString().getBytes(), StandardOpenOption.APPEND), System.out::println, () -> System.out.println("Completed"));
 
         /*var request = wikipediaQuery("java")
                 .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));*/
@@ -95,13 +109,13 @@ public class Application {
                 .subscribeOn(Schedulers.io())
                 .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));*/
 
-        var subscription = ObservableReader.from(System.in)
+        /*var subscription = ObservableReader.from(System.in)
                 .debounce(5, TimeUnit.SECONDS)
                 .flatMap(query -> Observable.zip(wikipediaQuery(query), gitHubQuery(query), this::toResultList))
                 .flatMap(Observable::fromIterable)
                 .map(String::toLowerCase)
                 .subscribeOn(Schedulers.io())
-                .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));
+                .subscribe(System.out::println, System.out::println, () -> System.out.println("Completed"));*/
 
 
         compositeDisposable.addAll(subscription);
