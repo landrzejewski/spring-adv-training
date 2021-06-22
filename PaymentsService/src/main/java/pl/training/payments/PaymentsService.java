@@ -21,6 +21,7 @@ public class PaymentsService {
         return payment
                 .map(this::processedPayment)
                 .flatMap(paymentsRepository::save)
+                .flatMap(payment -> Mono.just(payment).delayElement(Duration.ofSeconds(2)))
                 .doOnNext(payments::tryEmitNext);
     }
 
